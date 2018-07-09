@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="FocusArea">
+        <attr name="FA_focusViewDrawableRes" format="reference" />
+        <attr name="FA_allowChildOutOfBound" format="boolean" />
+        <attr name="FA_focusMoveDuration" format="integer" />
+        <attr name="FA_ignoreTagsArray" format="reference" />
+        <attr name="FA_keyDownDelay" format="integer" />
+        <attr name="FA_focusZoom" format="float" />
+    </declare-styleable>
+</resources>
