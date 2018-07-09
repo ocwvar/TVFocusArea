@@ -27,6 +27,9 @@ import android.widget.RelativeLayout;
  */
 public class FocusArea extends RelativeLayout implements ViewTreeObserver.OnGlobalFocusChangeListener {
 
+	//焦点View的ID
+	private final int VIEW_ID_FOCUS_ANIM_VIEW = 114514;
+
 	//负责执行动画的View
 	private FocusAnimView focusAnimView;
 
@@ -131,14 +134,22 @@ public class FocusArea extends RelativeLayout implements ViewTreeObserver.OnGlob
 		//设置是否允许Child越界
 		setClipChildren( !allowChildOutOfBound );
 
-		this.focusAnimView = new FocusAnimView( getContext(), drawableRes, duration, new LinearOutSlowInInterpolator() );
-		addView( this.focusAnimView );
+		//不重新放置焦点动画View
+		if ( findViewById( VIEW_ID_FOCUS_ANIM_VIEW ) == null ) {
+			this.focusAnimView = new FocusAnimView( getContext(), drawableRes, duration, new LinearOutSlowInInterpolator() );
+			this.focusAnimView.setId( VIEW_ID_FOCUS_ANIM_VIEW );
+			addView( this.focusAnimView );
+		}
 	}
 
+	/**
+	 * 在这里处理所有的 新旧焦点 交替事件的处理
+	 */
 	@Override
 	public void onGlobalFocusChanged( View oldFocus, View newFocus ) {
 		//如果焦点对象不是来自内部，则不执行动画效果
 		if ( !isFromInside( newFocus ) ) {
+			this.focusAnimView.setVisibility( INVISIBLE );
 			return;
 		}
 

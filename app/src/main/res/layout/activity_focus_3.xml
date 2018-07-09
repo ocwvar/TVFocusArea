@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#8f8f8f"
-    app:FA_allowChildOutOfBound="true"
-    app:FA_focusMoveDuration="300">
+    android:background="#8f8f8f">
 
     <com.ocwvar.libfocusarea.FocusArea
         android:layout_width="match_parent"
@@ -78,5 +75,44 @@
             android:layout_marginRight="20dp" />
 
     </LinearLayout>
+
+    <com.ocwvar.libfocusarea.FocusArea
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="350dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <View
+                style="@style/FocusableWidget"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginRight="20dp" />
+
+            <View
+                style="@style/FocusableWidget"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginRight="20dp" />
+
+            <View
+                style="@style/FocusableWidget"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginRight="20dp" />
+
+            <View
+                style="@style/FocusableWidget"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginRight="20dp" />
+
+        </LinearLayout>
+
+    </com.ocwvar.libfocusarea.FocusArea>
 
 </RelativeLayout>
