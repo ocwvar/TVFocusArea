@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="FocusArea">
+
+        <!--焦点框的图片资源，可以使用 .9图 也可以使用 Shape图-->
         <attr name="FA_focusViewDrawableRes" format="reference" />
+
+        <!--是否允许子View超出边界-->
         <attr name="FA_allowChildOutOfBound" format="boolean" />
+
+        <!--焦点框的移动时间，单位毫秒    默认为：300（最低）-->
         <attr name="FA_focusMoveDuration" format="integer" />
+
+        <!--布局中指定的Tag将不会显示焦点效果-->
         <attr name="FA_ignoreTagsArray" format="reference" />
+
+        <!--按键延迟时间，单位毫秒    默认为：0-->
         <attr name="FA_keyDownDelay" format="integer" />
+
+        <!--获取到焦点的View放大效果，默认为：0（无效果）-->
         <attr name="FA_focusZoom" format="float" />
+
     </declare-styleable>
 </resources>

@@ -4,9 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#8f8f8f"
-    app:FA_allowChildOutOfBound="true"
-    app:FA_focusMoveDuration="500"
-    app:FA_keyDownDelay="0">
+    app:FA_focusViewDrawableRes="@drawable/shape_focus">
 
     <LinearLayout
         android:layout_width="match_parent"
