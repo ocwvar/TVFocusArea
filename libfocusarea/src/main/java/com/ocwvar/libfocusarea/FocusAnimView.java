@@ -160,7 +160,7 @@ final class FocusAnimView extends View {
 			//使用动画更新坐标以及尺寸
 			setPositionAndSizeSmoothly( (int) reducedRectF.left, (int) reducedRectF.top, reducedRectF.width(), reducedRectF.height() );
 		} else {
-			//不使用动画更新位置
+			//不使用动画更新位置，使用一个淡入效果来显示第一个位置，防止焦点框从奇怪的地方飞过来
 			this.lastLeftSize = (int) reducedRectF.left;
 			this.lastTopSize = (int) reducedRectF.top;
 			this.currentWidth = reducedRectF.width();
