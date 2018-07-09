@@ -215,7 +215,7 @@ public class FocusArea extends RelativeLayout implements ViewTreeObserver.OnGlob
 		}
 
 		//执行光标的动画效果
-		this.focusAnimView.updateLocation( getViewRectF( newFocus, this.zoom ), oldFocus != null );
+		this.focusAnimView.updateLocation( getViewRectF( newFocus, this.zoom ), oldFocus != null && this.focusAnimView.getVisibility() == View.VISIBLE );
 
 		//进行接口的回调
 		if ( this.focusChangedCallback != null ) {

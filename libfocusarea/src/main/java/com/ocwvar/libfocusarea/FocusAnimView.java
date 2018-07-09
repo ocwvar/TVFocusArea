@@ -8,6 +8,8 @@ import android.content.res.Resources;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -27,6 +29,9 @@ final class FocusAnimView extends View {
 
 	//焦点图片Padding尺寸 , 必须是.9图格式
 	private Rect drawablePaddingRect;
+
+	//最后一次通过 updateLocation() 传入的RectF位置，不包含 .9 位图的Padding数据。用于给 onSaveInstanceState() 保存数据使用的
+	private RectF lastTimeUsedOriginalRect = null;
 
 	//是否初始化完成
 	private boolean initDone;
@@ -76,6 +81,40 @@ final class FocusAnimView extends View {
 		this.initDone = true;
 	}
 
+	@Nullable
+	@Override
+	protected Parcelable onSaveInstanceState() {
+		if ( this.lastTimeUsedOriginalRect == null ) {
+			return super.onSaveInstanceState();
+		}
+
+		//在View发生变化的时候进行数据的保存
+		final Bundle args = new Bundle();
+
+		//必须调用 super.onSaveInstanceState() 来获取基础参数 , 给 onRestoreInstanceState() 方法调用
+		//否则会出现异常
+		args.putParcelable( "superState", super.onSaveInstanceState() );
+		args.putParcelable( "lastTimeRectF", this.lastTimeUsedOriginalRect );
+		return args;
+	}
+
+	@Override
+	protected void onRestoreInstanceState( Parcelable state ) {
+		if ( state != null && state instanceof Bundle ) {
+			this.lastTimeUsedOriginalRect = ( (Bundle) state ).getParcelable( "lastTimeRectF" );
+
+			//必须调用此方法传入从 onSaveInstanceState() 中传递过来的对象
+			super.onRestoreInstanceState( ( (Bundle) state ).getParcelable( "superState" ) );
+
+			//更新位置
+			setVisibility( VISIBLE );
+			updateLocation( this.lastTimeUsedOriginalRect, false );
+			return;
+		}
+
+		super.onRestoreInstanceState( state );
+	}
+
 	/**
 	 * @param duration 动画时长
 	 */
@@ -107,6 +146,7 @@ final class FocusAnimView extends View {
 			resetLocation();
 			return;
 		}
+		this.lastTimeUsedOriginalRect = locationRectF;
 
 		//生成带Padding的尺寸以及坐标RectF对象
 		final RectF reducedRectF = new RectF(
