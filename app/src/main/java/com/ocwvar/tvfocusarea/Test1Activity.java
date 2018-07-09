@@ -1,7 +1,6 @@
 package com.ocwvar.tvfocusarea;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -54,7 +53,7 @@ public final class Test1Activity extends AppCompatActivity {
 			layoutParams.leftMargin = 20;
 
 			TextView textView = new TextView( parent.getContext() );
-			textView.setBackgroundColor( Color.WHITE );
+			textView.setBackground( getResources().getDrawable( R.drawable.selector_background ) );
 			textView.setGravity( Gravity.CENTER );
 			textView.setTextSize( 25.0f );
 			textView.setClickable( true );
@@ -98,7 +97,7 @@ public final class Test1Activity extends AppCompatActivity {
 			layoutParams.topMargin = 20;
 
 			TextView textView = new TextView( parent.getContext() );
-			textView.setBackgroundColor( Color.WHITE );
+			textView.setBackground( getResources().getDrawable( R.drawable.selector_background ) );
 			textView.setGravity( Gravity.CENTER );
 			textView.setTextSize( 25.0f );
 			textView.setClickable( true );
@@ -145,7 +144,7 @@ public final class Test1Activity extends AppCompatActivity {
 			layoutParams.bottomMargin = 10;
 
 			TextView textView = new TextView( parent.getContext() );
-			textView.setBackgroundColor( Color.WHITE );
+			textView.setBackground( getResources().getDrawable( R.drawable.selector_background ) );
 			textView.setGravity( Gravity.CENTER );
 			textView.setTextSize( 25.0f );
 			textView.setClickable( true );

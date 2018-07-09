@@ -10,6 +10,7 @@ import android.support.v4.view.animation.LinearOutSlowInInterpolator;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewParent;
 import android.view.ViewTreeObserver;
 import android.view.animation.Animation;
 import android.view.animation.Interpolator;
@@ -136,6 +137,10 @@ public class FocusArea extends RelativeLayout implements ViewTreeObserver.OnGlob
 
 	@Override
 	public void onGlobalFocusChanged( View oldFocus, View newFocus ) {
+		//如果焦点对象不是来自内部，则不执行动画效果
+		if ( !isFromInside( newFocus ) ) {
+			return;
+		}
 
 		//判断是否需要忽略焦点动画
 		boolean isIgnoreNewFocus = false;
@@ -354,9 +359,38 @@ public class FocusArea extends RelativeLayout implements ViewTreeObserver.OnGlob
 			sumTop += view.getTop();
 			sumLeft += view.getLeft();
 
-			view = (View) view.getParent();
+			if ( view.getParent() instanceof View ) {
+				view = (View) view.getParent();
+			} else {
+				view = null;
+			}
+
 		}
 		return new int[]{ sumTop, sumLeft };
+	}
+
+	/**
+	 * 判断指定的View是否来自内部
+	 *
+	 * @param view 需要判断的View
+	 *
+	 * @return 是否来自内部
+	 */
+	private boolean isFromInside( View view ) {
+		if ( view.getId() != -1 ) {
+			//如果这个View有ID，则通过ID进行判断
+			return findViewById( view.getId() ) != null;
+		}
+
+		ViewParent viewParent = view.getParent();
+		while ( viewParent != null ) {
+			if ( viewParent instanceof FocusArea ) {
+				return true;
+			}
+			viewParent = viewParent.getParent();
+		}
+
+		return false;
 	}
 
 	/**

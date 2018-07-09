@@ -12,6 +12,7 @@
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
         <item name="android:focusableInTouchMode">true</item>
+        <item name="android:background">@drawable/selector_background</item>
     </style>
 
 </resources>

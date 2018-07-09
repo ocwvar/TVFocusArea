@@ -6,7 +6,7 @@
     android:background="#8f8f8f"
     app:FA_allowChildOutOfBound="true"
     app:FA_focusMoveDuration="500"
-    app:FA_keyDownDelay="300">
+    app:FA_keyDownDelay="0">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,8 +22,7 @@
                 style="@style/FocusableWidget"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:layout_margin="10dp"
-                android:background="#fff" />
+                android:layout_margin="10dp" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycleViewV"
@@ -58,7 +57,6 @@
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
-                    android:background="#fff"
                     android:gravity="center"
                     android:text="测试 2"
                     android:textColor="#000"

@@ -27,8 +27,7 @@
                 style="@style/FocusableWidget"
                 android:layout_width="230dp"
                 android:layout_height="match_parent"
-                android:layout_margin="15dp"
-                android:background="#fff" />
+                android:layout_margin="15dp" />
 
             <View
                 android:id="@+id/a2"
@@ -36,8 +35,7 @@
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="50dp"
-                android:layout_toRightOf="@+id/a1"
-                android:background="#fff" />
+                android:layout_toRightOf="@+id/a1" />
 
             <View
                 android:id="@+id/a3"
@@ -45,19 +43,17 @@
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="30dp"
-                android:layout_toRightOf="@+id/a2"
-                android:background="#fff" />
+                android:layout_toRightOf="@+id/a2" />
 
             <TextView
-                android:id="@+id/jump1"
+                android:id="@+id/jump3"
                 style="@style/FocusableWidget"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="70dp"
                 android:layout_toRightOf="@+id/a3"
-                android:background="#fff"
                 android:gravity="center"
-                android:text="测试 1"
+                android:text="测试 3"
                 android:textColor="#000"
                 android:textStyle="bold" />
 
@@ -76,36 +72,28 @@
                 android:id="@+id/b1"
                 style="@style/FocusableWidget"
                 android:layout_width="230dp"
-                android:layout_height="match_parent"
-                android:background="#fff"
-                android:tag="b1" />
+                android:layout_height="match_parent" />
 
             <View
                 android:id="@+id/b2"
                 style="@style/FocusableWidget"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="50dp"
-                android:background="#fff"
-                android:tag="b2" />
+                android:layout_marginLeft="50dp" />
 
             <View
                 android:id="@+id/b3"
                 style="@style/FocusableWidget"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="30dp"
-                android:background="#fff"
-                android:tag="b3" />
+                android:layout_marginLeft="30dp" />
 
             <View
                 android:id="@+id/b4"
                 style="@style/FocusableWidget"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="70dp"
-                android:background="#fff"
-                android:tag="b4" />
+                android:layout_marginLeft="70dp" />
 
         </LinearLayout>
 
@@ -121,7 +109,6 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="#d1d1d1"
                 android:gravity="center"
                 android:text="权重 1"
                 android:textColor="#000"
@@ -132,7 +119,6 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="#fff"
                 android:gravity="center"
                 android:text="权重 2"
                 android:textColor="#000"
