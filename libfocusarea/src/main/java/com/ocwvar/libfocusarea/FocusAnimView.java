@@ -121,14 +121,15 @@ final class FocusAnimView extends View {
 			setPositionAndSizeSmoothly( (int) reducedRectF.left, (int) reducedRectF.top, reducedRectF.width(), reducedRectF.height() );
 		} else {
 			//不使用动画更新位置
-			setTranslationX( (int) reducedRectF.left );
-			setTranslationY( (int) reducedRectF.top );
-			setWidth( reducedRectF.width() );
-			setHeight( reducedRectF.height() );
 			this.lastLeftSize = (int) reducedRectF.left;
 			this.lastTopSize = (int) reducedRectF.top;
 			this.currentWidth = reducedRectF.width();
 			this.currentHeight = reducedRectF.height();
+			setTranslationX( this.lastLeftSize );
+			setTranslationY( this.lastTopSize );
+			setWidth( reducedRectF.width() );
+			setHeight( reducedRectF.height() );
+			setVisibility( VISIBLE );
 		}
 	}
 
