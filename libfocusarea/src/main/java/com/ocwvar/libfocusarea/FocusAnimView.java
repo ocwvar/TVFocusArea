@@ -125,6 +125,10 @@ final class FocusAnimView extends View {
 			setTranslationY( (int) reducedRectF.top );
 			setWidth( reducedRectF.width() );
 			setHeight( reducedRectF.height() );
+			this.lastLeftSize = (int) reducedRectF.left;
+			this.lastTopSize = (int) reducedRectF.top;
+			this.currentWidth = reducedRectF.width();
+			this.currentHeight = reducedRectF.height();
 		}
 	}
 
