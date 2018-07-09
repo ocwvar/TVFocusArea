@@ -147,6 +147,10 @@ public class FocusArea extends RelativeLayout implements ViewTreeObserver.OnGlob
 	 */
 	@Override
 	public void onGlobalFocusChanged( View oldFocus, View newFocus ) {
+		if ( newFocus == null ) {
+			return;
+		}
+
 		//如果焦点对象不是来自内部，则不执行动画效果
 		if ( !isFromInside( newFocus ) ) {
 			this.focusAnimView.setVisibility( INVISIBLE );
