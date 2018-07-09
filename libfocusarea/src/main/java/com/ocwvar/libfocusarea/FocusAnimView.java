@@ -129,7 +129,7 @@ final class FocusAnimView extends View {
 			setTranslationY( this.lastTopSize );
 			setWidth( reducedRectF.width() );
 			setHeight( reducedRectF.height() );
-			setVisibility( VISIBLE );
+			showUpFirstTimeSmoothly();
 		}
 	}
 
@@ -161,6 +161,27 @@ final class FocusAnimView extends View {
 
 		//设置时长
 		animatorSet.setDuration( this.duration );
+
+		//执行动画
+		animatorSet.start();
+
+		//使焦点框置于最顶层
+		bringToFront();
+	}
+
+	/**
+	 * 第一次显示的时候播放淡入的动画效果
+	 */
+	private void showUpFirstTimeSmoothly() {
+		final ObjectAnimator alphaAnimator = ObjectAnimator.ofFloat( FocusAnimView.this, "Alpha", 0.0f, 1.0f );
+		final AnimatorSet animatorSet = new AnimatorSet();
+		animatorSet.playTogether( alphaAnimator );
+
+		//设置加速器
+		animatorSet.setInterpolator( this.interpolator );
+
+		//设置时长
+		alphaAnimator.setDuration( (long) ( this.duration * 1.5f ) );
 
 		//执行动画
 		animatorSet.start();
