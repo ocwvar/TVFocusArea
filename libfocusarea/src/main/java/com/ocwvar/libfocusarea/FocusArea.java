@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.animation.LinearOutSlowInInterpolator;
 import android.util.AttributeSet;
@@ -145,6 +144,7 @@ public class FocusArea extends RelativeLayout implements ViewTreeObserver.OnGlob
 	/**
 	 * 在这里处理所有的 新旧焦点 交替事件的处理
 	 */
+	@SuppressWarnings ("ConstantConditions")
 	@Override
 	public void onGlobalFocusChanged( View oldFocus, View newFocus ) {
 		if ( newFocus == null ) {
@@ -261,16 +261,15 @@ public class FocusArea extends RelativeLayout implements ViewTreeObserver.OnGlob
 		float viewRight = result[ 1 ] + view.getMeasuredWidth();
 		float viewBottom = result[ 0 ] + view.getMeasuredHeight();
 
-
 		/////////////////////////////////////////////下面处理焦点框越界的问题///////////////////////////////////////////////
 
-
-		//获取子View的上一层父容器的边距数据
+		//获取子View的父容器的边距数据
 		int[] parentResult = getViewTopAndLeft( (View) view.getParent() );
-		final float parentTop = parentResult[ 0 ];
-		final float parentLeft = parentResult[ 1 ];
-		final float parentBottom = parentResult[ 0 ] + ( (View) view.getParent() ).getMeasuredHeight();
-		final float parentRight = parentResult[ 1 ] + ( (View) view.getParent() ).getMeasuredWidth();
+		int[] parentPaddingResult = getViewPadding( (View) view.getParent() );
+		final float parentTop = parentResult[ 0 ] - parentPaddingResult[ 0 ];
+		final float parentLeft = parentResult[ 1 ] + parentPaddingResult[ 1 ];
+		final float parentBottom = parentResult[ 0 ] + ( (View) view.getParent() ).getMeasuredHeight() + parentPaddingResult[ 2 ];
+		final float parentRight = parentResult[ 1 ] + ( (View) view.getParent() ).getMeasuredWidth() - parentPaddingResult[ 3 ];
 
 		//获取本控件布局的边距数据
 		final float rootLeft = getLeft();
@@ -359,11 +358,11 @@ public class FocusArea extends RelativeLayout implements ViewTreeObserver.OnGlob
 	}
 
 	/**
-	 * 获取间隔空间，包括Padding以及Margin数值
+	 * 获取从指定的View开始往下累计的 Top长度 和 Left长度
 	 *
 	 * @param view 要获取数据的View对象
 	 *
-	 * @return 间隔大小 [top, left]
+	 * @return 长度数值 [top, left]
 	 */
 	private int[] getViewTopAndLeft( View view ) {
 
@@ -382,6 +381,23 @@ public class FocusArea extends RelativeLayout implements ViewTreeObserver.OnGlob
 
 		}
 		return new int[]{ sumTop, sumLeft };
+	}
+
+	/**
+	 * 获取从指定的View开始往下累计的Padding
+	 *
+	 * @param view 要获取数据的View对象
+	 *
+	 * @return [top, left, bottom, right]
+	 */
+	private int[] getViewPadding( View view ) {
+
+		int sumTop = view.getPaddingTop();
+		int sumLeft = view.getPaddingLeft();
+		int sumBottom = view.getPaddingBottom();
+		int sumRight = view.getPaddingRight();
+
+		return new int[]{ sumTop, sumLeft, sumBottom, sumRight };
 	}
 
 	/**
@@ -404,7 +420,6 @@ public class FocusArea extends RelativeLayout implements ViewTreeObserver.OnGlob
 			}
 			viewParent = viewParent.getParent();
 		}
-
 		return false;
 	}
 
@@ -419,7 +434,7 @@ public class FocusArea extends RelativeLayout implements ViewTreeObserver.OnGlob
 		 * @param oldFocusView 上一个焦点View , 如果是首次焦点 , 则为NULL
 		 * @param newFocusView 当前的焦点View
 		 */
-		void onFocusChanged( @Nullable final View oldFocusView, @NonNull final View newFocusView );
+		void onFocusChanged( @Nullable final View oldFocusView, @Nullable final View newFocusView );
 
 	}
 

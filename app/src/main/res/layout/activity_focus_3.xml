@@ -105,11 +105,16 @@
                 android:layout_height="100dp"
                 android:layout_marginRight="20dp" />
 
-            <View
+            <TextView
+                android:id="@+id/jump4"
                 style="@style/FocusableWidget"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_marginRight="20dp" />
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:text="测试 4"
+                android:textColor="#000"
+                android:textStyle="bold" />
 
         </LinearLayout>
 

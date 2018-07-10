@@ -23,6 +23,14 @@
             android:name=".Test3Activity"
             android:launchMode="singleTask" />
 
+        <activity
+            android:name=".Test4Activity"
+            android:launchMode="singleTask" />
+
+        <activity
+            android:name=".Test5Activity"
+            android:launchMode="singleTask" />
+
     </application>
 
 </manifest>

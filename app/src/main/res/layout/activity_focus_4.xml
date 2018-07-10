@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ocwvar.libfocusarea.FocusArea xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#8f8f8f">
+
+    <TextView
+        android:id="@+id/jump5"
+        style="@style/FocusableWidget"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:gravity="center"
+        android:text="测试 5"
+        android:textColor="#000"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:background="#ffffd4"
+        android:padding="20dp">
+
+        <com.yan.tvprojectutils.FocusRecyclerView
+            android:id="@+id/recycleView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="#47000000"
+            android:padding="10dp" />
+
+    </RelativeLayout>
+
+</com.ocwvar.libfocusarea.FocusArea>
