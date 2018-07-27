@@ -332,7 +332,7 @@ public class FocusArea extends RelativeLayout implements ViewTreeObserver.OnGlob
 	 */
 	@Override
 	public boolean dispatchKeyEvent( KeyEvent event ) {
-		if ( event.getAction() != KeyEvent.ACTION_DOWN ) {
+		if ( event.getAction() != KeyEvent.ACTION_DOWN || this.keyDownDelay <= 0L ) {
 			return super.dispatchKeyEvent( event );
 		}
 
@@ -384,7 +384,7 @@ public class FocusArea extends RelativeLayout implements ViewTreeObserver.OnGlob
 	}
 
 	/**
-	 * 获取从指定的View开始往下累计的Padding
+	 * 获取从指定的View的Padding
 	 *
 	 * @param view 要获取数据的View对象
 	 *
